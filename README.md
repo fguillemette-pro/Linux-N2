@@ -22,16 +22,16 @@ background: img/linux.png
 
 - Exécuter des commandes de manière plus efficace en utilisant les fonctionnalités avancées du shell Bash, des scripts shell et divers utilitaires fournis par Red Hat Enterprise Linux.
 - Configurer un service de ligne de commande sécurisé sur des systèmes distants en utilisant OpenSSH.
-- Configurer les interfaces réseau et les paramètres des serveurs Red Hat Enterprise Linux.
 - Archiver et copier des fichiers d'un système à un autre.
 - Contrôler les connexions réseau vers les services en utilisant le pare-feu système et les règles SELinux.
+- Programmer l'exécution de commandes dans le futur, soit une fois ou de manière récurrente.
 
 ---
 
 # Sommaire 2/2
 
+- Configurer les interfaces réseau et les paramètres des serveurs Red Hat Enterprise Linux.
 - Accéder, inspecter et utiliser des systèmes de fichiers existants sur le stockage attaché à un serveur Linux.
-- Programmer l'exécution de commandes dans le futur, soit une fois ou de manière récurrente.
 - Améliorer les performances du système en définissant des paramètres de réglage et en ajustant la priorité de planification des processus.
 
 ---
@@ -188,9 +188,6 @@ SCP utilise SSH pour l'authentification et le transfert sécurisé des fichiers.
 - Exemple : `scp -i chemin/vers/cle_privee fichier.txt utilisateur@serveur:/chemin/destination`
 
 ---
-Bien sûr! Voici une présentation sur firewalld utilisant Marp :
-
----
 
 # firewalld > Objectifs
 
@@ -246,7 +243,7 @@ SELinux (Security-Enhanced Linux) est un module de sécurité intégré dans le 
 
 ---
 
-# SELinux > Buts
+# SELinux > Objectifs
 
 - Contrôle fin des autorisations d'accès aux fichiers, processus, ports réseau, etc.
 - Isolation des processus pour limiter les effets des failles de sécurité.
@@ -337,6 +334,8 @@ SELinux (Security-Enhanced Linux) est un module de sécurité intégré dans le 
   [Install]
   WantedBy=multi-user.target
   ```
+
+---
 - Exemple de fichier `.timer` :
   ```
   [Unit]

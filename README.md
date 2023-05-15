@@ -75,7 +75,7 @@ systemctl status sshd
 
 # OpenSSH > Installation 2/2
 
-Configuration du parfeux
+Configuration du parefeux
 
 ```
 # firewall-cmd --zone=public --permanent --add-service=ssh

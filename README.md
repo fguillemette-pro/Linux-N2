@@ -9,7 +9,7 @@ background: img/linux.png
 ![bg](img/linux.png)
 
 # Formation Linux N2
-## 
+# 
 *2H - Florent Guillemette - Session 1/3*
 
 ---
@@ -154,7 +154,7 @@ scp [OPTIONS] SOURCE DESTINATION
 
 ---
 
-## SCP > Exemples d'utilisation
+# SCP > Exemples d'utilisation
 
 - Copier un fichier local vers un système distant :
 
@@ -170,7 +170,7 @@ scp utilisateur@serveur distant:/chemin/source/fichier.txt /chemin/destination
 
 ---
 
-## SCP > Options couramment utilisées
+# SCP > Options couramment utilisées
 
 - `-P port` : Spécifier un port personnalisé pour la connexion SSH.
 - `-r` : Copier récursivement un répertoire et son contenu.
@@ -180,12 +180,63 @@ scp utilisateur@serveur distant:/chemin/source/fichier.txt /chemin/destination
 
 ---
 
-## SCP > Authentification
+# SCP > Authentification
 
 SCP utilise SSH pour l'authentification et le transfert sécurisé des fichiers.
 
 - Vous pouvez utiliser des clés SSH pour éviter de saisir le mot de passe à chaque transfert.
 - Exemple : `scp -i chemin/vers/cle_privee fichier.txt utilisateur@serveur:/chemin/destination`
+
+---
+Bien sûr! Voici une présentation sur firewalld utilisant Marp :
+
+---
+
+# firewalld > Objectifs
+
+- Gestion des zones de pare-feu basées sur les emplacements physiques ou les interfaces réseau.
+- Configuration dynamique des règles sans interrompre les connexions établies.
+- Prise en charge des services, des ports, des applications et des protocoles.
+- Intégration avec NetworkManager pour une gestion cohérente des connexions réseau.
+
+---
+
+# firewalld > Terminologie
+
+- **Zone** : Un ensemble de règles de pare-feu appliquées à un emplacement ou une interface réseau spécifique.
+- **Service** : Une définition de service prédéfini qui regroupe un ensemble de règles spécifiques pour une application ou un protocole.
+- **Port** : Un numéro de port TCP ou UDP spécifique à autoriser ou à bloquer.
+- **Source** : Les adresses IP ou les plages d'adresses autorisées à accéder au système.
+- **Masquerade** : Une technique de traduction d'adresse (NAT) pour masquer l'adresse source des paquets sortants.
+
+---
+
+# firewalld > Commandes utiles
+
+- `firewall-cmd --get-default-zone` : Affiche la zone par défaut.
+- `firewall-cmd --get-active-zones` : Affiche les zones actives.
+- `firewall-cmd --list-all` : Affiche toutes les règles et les zones configurées.
+- `firewall-cmd --zone=zone_name --add-service=service_name` : Ajoute un service à une zone spécifique.
+- `firewall-cmd --zone=zone_name --add-port=port_number/protocol` : Ajoute un port à une zone spécifique.
+
+---
+
+# firewalld > Gestion des zones
+
+- `public` : Utilisée pour les connexions non fiables depuis Internet.
+- `trusted` : Utilisée pour les connexions fiables en réseau local.
+- `internal` : Utilisée pour les réseaux internes plus sécurisés.
+- `work` : Utilisée pour les connexions professionnelles.
+- `home` : Utilisée pour les connexions domestiques.
+- `dmz` : Utilisée pour les systèmes exposés dans la zone démilitarisée (DMZ).
+
+---
+
+# firewalld > Configuration persistante
+
+- firewalld stocke les règles dans des fichiers XML dans le répertoire `/etc/firewalld`.
+- Les modifications apportées via `firewall-cmd` sont appliquées immédiatement mais ne persistent pas après le redémarrage.
+- Pour rendre les modifications persistantes, utilisez `firewall-cmd --runtime-to-permanent`.
 
 ---
 
@@ -195,7 +246,7 @@ SELinux (Security-Enhanced Linux) est un module de sécurité intégré dans le 
 
 ---
 
-## SELinux > Buts
+# SELinux > Buts
 
 - Contrôle fin des autorisations d'accès aux fichiers, processus, ports réseau, etc.
 - Isolation des processus pour limiter les effets des failles de sécurité.
@@ -204,7 +255,7 @@ SELinux (Security-Enhanced Linux) est un module de sécurité intégré dans le 
 
 ---
 
-## SELinux > Modes de fonctionnement
+# SELinux > Modes de fonctionnement
 
 - **Enforcing** : Mode par défaut. SELinux applique strictement les politiques de sécurité et bloque les actions non autorisées.
 - **Permissive** : SELinux génère des avertissements sans bloquer les actions non autorisées. Utile pour le débogage des politiques de sécurité.
@@ -212,7 +263,7 @@ SELinux (Security-Enhanced Linux) est un module de sécurité intégré dans le 
 
 ---
 
-## SELinux > Contextes 
+# SELinux > Contextes 
 
 - Chaque fichier, processus, port réseau, etc. a un contexte SELinux.
 - Les contextes sont composés de :
@@ -223,7 +274,7 @@ SELinux (Security-Enhanced Linux) est un module de sécurité intégré dans le 
 
 ---
 
-## SELinux > Commandes utiles
+# SELinux > Commandes utiles
 
 - `sestatus` : Affiche l'état actuel de SELinux et le mode d'application.
 - `getenforce` : Vérifie si SELinux est en mode "Enforcing" ou "Permissive".
@@ -233,7 +284,7 @@ SELinux (Security-Enhanced Linux) est un module de sécurité intégré dans le 
 
 ---
 
-## SELinux > Politiques SELinux
+# SELinux > Politiques SELinux
 
 - Les politiques SELinux définissent les règles de contrôle d'accès.
 - Les modules de politique sont utilisés pour personnaliser les politiques SELinux.

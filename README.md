@@ -291,3 +291,64 @@ SELinux (Security-Enhanced Linux) est un module de sécurité intégré dans le 
 - Exemple : `semodule -i mon_module.pp` pour installer un module de politique personnalisé.
 
 ---
+
+## Cron & At > Présentation
+
+- **cron** : Planificateur de tâches basé sur le temps.
+- **at** : Planificateur de tâches ponctuelles.
+- **systemd timers** : Planificateur de tâches intégré à systemd.
+
+---
+
+## Cron & At > Utilisation de cron
+
+- `crontab -e` : Édite la table des tâches cron de l'utilisateur courant.
+- `crontab -l` : Affiche la table des tâches cron de l'utilisateur courant.
+- `crontab -r` : Supprime la table des tâches cron de l'utilisateur courant.
+- Syntaxe de la ligne de commande cron : `* * * * * commande`
+  - Les cinq astérisques correspondent respectivement à la minute, à l'heure, au jour du mois, au mois et au jour de la semaine.
+  - Utilisez des nombres ou des plages pour spécifier des valeurs spécifiques.
+  - Exemple : `0 0 * * * sauvegarde.sh` exécutera le script "sauvegarde.sh" tous les jours à minuit.
+
+---
+
+## Cron & At > Utilisation de at
+
+- `at now + 5 minutes` : Planifie l'exécution d'une commande dans 5 minutes.
+- `at 2:00 PM` : Planifie l'exécution d'une commande à une heure spécifique.
+- `atq` : Affiche la file d'attente des tâches planifiées avec at.
+- `atrm job_number` : Supprime une tâche planifiée spécifique de la file d'attente.
+- `at -l` : Affiche les tâches planifiées de l'utilisateur courant.
+
+---
+
+## Utilisation de systemd timers
+
+- Créez un fichier de service unité avec une extension `.service` dans `/etc/systemd/system/`.
+- Créez un fichier de timer unité avec une extension `.timer` dans `/etc/systemd/system/`.
+- Exemple de fichier `.service` :
+  ```
+  [Unit]
+  Description=Ma tâche planifiée
+
+  [Service]
+  ExecStart=/chemin/vers/commande
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
+- Exemple de fichier `.timer` :
+  ```
+  [Unit]
+  Description=Mon timer
+
+  [Timer]
+  OnCalendar=*-*-* 00:00:00
+  Unit=mon-service.service
+
+  [Install]
+  WantedBy=timers.target
+  ```
+- Activez et démarrez le timer avec `systemctl start mon-timer.timer`.
+
+---
